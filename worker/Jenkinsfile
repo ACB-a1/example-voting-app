@@ -10,20 +10,23 @@ pipeline {
             steps {
                 echo 'Compiling worker app'
                 dir('worker'){
-                  sh ' /var/lib/docker/volumes/setup_jenkins-data/_data/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.6.1/bin/mvn compile'
+                  sh 'mvn compile'
                 }
             }
         }
         stage('test') {
             steps {
                 echo 'Running unit tests on worker app'
+                 dir('worker'){
+                  sh 'mvn clean test'
                 sleep 6
             }
         }
         stage('package') {
             steps {
                 echo 'Packaging worker app'
-                sleep 10
+                dir('worker'){
+                  sh 'mvn 'package
             }
         }
     }
