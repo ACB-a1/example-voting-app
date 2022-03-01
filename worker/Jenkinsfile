@@ -33,7 +33,7 @@ pipeline {
     
     post {
         always{
-            echo "Build pipeline for worker is complete"
+            echo "Build pipeline for worker is completed"
         }
     }
 }
